@@ -36,6 +36,6 @@ jobs:
       - name: Build Application
         run: npm run build
       - name: Deploy to S3
-        run: aws s3 sync packages/host-app/dist s3://${{ secrets.BUCKET_NAME }}/host-app/latest
+        run: aws s3 sync dist s3://${{ secrets.BUCKET_NAME }}/host-app/latest
       - name: Create Cloudfront Invalidation
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/host-app/latest/index.html"
